@@ -69,3 +69,8 @@ exports.usersUpdatePost = [
   }
 ]
 
+// Tell the server to delete a matching user, if any. Otherwise, respond with an error.
+exports.usersDeletePost = (req, res) => {
+  usersStorage.deleteUser(req.params.id);
+  res.redirect("/");
+}
