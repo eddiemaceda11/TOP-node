@@ -74,3 +74,12 @@ exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect("/");
 }
+
+// Form data that has been sent via a GET request will not be available via req.body. You will need to use req.query instead.
+exports.usersSearchGet = (req, res) => {
+  const results = usersStorage.searchUser(req.query.fullName);
+  console.log("Results: ", results);
+  res.render("search", {
+    user: results
+  })
+}
