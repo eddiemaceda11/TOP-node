@@ -27,6 +27,13 @@ class UsersStorage {
   deleteUser(id) {
     delete this.storage[id];
   }
+
+  searchUser(name) {
+    console.log("User: ", name)
+    for (let key in this.storage) {
+      if (name === this.storage[key].firstName) return this.storage[key];
+    }
+  }
 }
 
 // Rather than exporting the class, we can export an instance of the class by instantiating it.
