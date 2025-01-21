@@ -1,11 +1,11 @@
 const db = require("../db/queries");
 
 exports.getCategorizedProperties = async (req, res) => {
-  const propertiesCategorized = await db.getPropertiesByHomeType(req.params.type);
-  console.log("Category: ", propertiesCategorized);
+  const categorizedProperties = await db.getPropertiesByHomeType(req.params.type);
+  console.log("Category: ", categorizedProperties);
 
   res.render("properties", {
-    title: "Properties"
-  })
-}
-
+    title: "Properties",
+    categorizedProperties,
+  });
+};
