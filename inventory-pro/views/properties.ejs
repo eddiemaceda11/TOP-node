@@ -7,7 +7,7 @@
     <h1><%= title %></h1>
     <ul>
       <% if (locals.categorizedProperties) {%> <% categorizedProperties.forEach(property => { %>
-      <li>ID: <%= property.id %>, Name: <%= property.city %> <%= property.zipcode %></li>
+      <li>ID: <%= property.id %>, Location: <%= property.city %> <%= property.zipcode %></li>
       <% }); %> <% } %>
     </ul>
   </body>
