@@ -16,7 +16,7 @@ app.use("/property", propertyRouter);
 const PORT = 3300;
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
-  console.log(process.env.PORT)
+  
 })
 
 
