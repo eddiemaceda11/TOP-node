@@ -6,11 +6,8 @@
   <body>
     <h1><%= title %></h1>
     <ul>
-      <% if (locals.users) {%> <% users.forEach(user => { %>
-      <li>
-        ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName %>
-        <a href="/<%= user.id %>/update">Update</a>
-      </li>
+      <% if (locals.property) {%> <% property.forEach(propertyObj => { %>
+      <li>ID: <%= propertyObj.id %>, Name: <%= propertyObj.address %> <%= propertyObj.city %></li>
       <% }); %> <% } %>
     </ul>
   </body>
