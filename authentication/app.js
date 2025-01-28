@@ -20,6 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.render("index");
 });
+app.get("/sign-up", (req, res) => {
+  res.render("sign-up-form");
+});
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
