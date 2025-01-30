@@ -58,7 +58,9 @@ passport.deserializeUser(async (id, done) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    user: req.user,
+  });
 });
 
 app.get("/sign-up", (req, res) => {
@@ -76,6 +78,7 @@ app.post("/sign-up", async (req, res, next) => {
 
 app.post(
   "/log-in",
+  //  This middleware performs numerous functions behind the scenes. Among other things, it looks at the request body for parameters named username and password then runs the LocalStrategy function that we defined earlier to see if the username and password are in the database.  It then creates a session cookie that gets stored in the user’s browser and used in all future requests to see whether or not that user is logged in. It can also redirect you to different routes based on whether the login is a success or a failure.
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/",
