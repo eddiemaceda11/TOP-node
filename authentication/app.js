@@ -5,6 +5,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+require("dotenv").config();
 const pool = new Pool({
   host: "localhost",
   user: process.env.HOSTNAME,
