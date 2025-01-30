@@ -42,6 +42,11 @@ passport.use(
   })
 );
 
+// passport.serializeUser takes a callback which contains the information we wish to store in the session data
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
