@@ -52,6 +52,7 @@ passport.deserializeUser(async (id, done) => {
   try {
     const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
     const user = rows[0];
+    done(null, user);
   } catch (err) {
     done(err);
   }
@@ -60,15 +61,6 @@ passport.deserializeUser(async (id, done) => {
 app.get("/", (req, res) => {
   res.render("index", {
     user: req.user,
-  });
-});
-
-app.get("/log-out", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
   });
 });
 
@@ -83,6 +75,15 @@ app.post("/sign-up", async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
+});
+
+app.get("/log-out", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
 app.post(
