@@ -11,7 +11,7 @@ const pool = new Pool({
   user: process.env.HOSTNAME,
   database: "authentication",
   password: process.env.PASSWORD,
-  port: 5434,
+  port: 5432,
 });
 
 const app = express();
@@ -30,6 +30,7 @@ app.get("/sign-up", (req, res) => {
   res.render("sign-up-form");
 });
 app.post("/sign-up", async (req, res, next) => {
+  console.log(req.body.username, req.body.password);
   try {
     await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [req.body.username, req.body.password]);
     res.redirect("/");
