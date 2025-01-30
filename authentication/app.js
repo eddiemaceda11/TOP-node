@@ -1,4 +1,5 @@
 const path = require("node:path");
+const bcrypt = require("bcryptjs");
 const { Pool } = require("pg");
 const express = require("express");
 const session = require("express-session");
@@ -68,7 +69,6 @@ app.get("/sign-up", (req, res) => {
   res.render("sign-up-form");
 });
 app.post("/sign-up", async (req, res, next) => {
-  console.log(req.body.username, req.body.password);
   try {
     await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [req.body.username, req.body.password]);
     res.redirect("/");
