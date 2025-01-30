@@ -22,7 +22,7 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-// This function is what will be called when we use the passport.authenticate() function later.
+// This function is what will be called when we use the passport.authenticate() function later. Basically, it takes a username and password, tries to find the user in our DB, and then makes sure that the user’s password matches the given password. If all of that works out (there’s a user in the DB, and the passwords match) then it authenticates our user and moves on! We will not be calling this function directly, so you won’t have to supply the done function. This function acts a bit like a middleware and will be called for us when we ask passport to do the authentication later.
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
