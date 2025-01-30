@@ -47,6 +47,16 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// passport.deserializeUser is called when retrieving a session, where it will extract the data we “serialized” in it then ultimately attach something to the .user property of the request object (req.user) for use in the rest of the request.
+passport.deserializeUser(async (id, done) => {
+  try {
+    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    const user = rows[0];
+  } catch (err) {
+    done(err);
+  }
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
