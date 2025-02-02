@@ -33,7 +33,10 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
+
+      // Compare the plain-text password in the request object to the hashed password.
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);
@@ -71,9 +74,11 @@ app.get("/sign-up", (req, res) => {
 app.post("/sign-up", async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    // NOTE - view below for line 74
     await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [req.body.username, hashedPassword]);
     res.redirect("/");
   } catch (err) {
+    console.error(err);
     return next(err);
   }
 });
