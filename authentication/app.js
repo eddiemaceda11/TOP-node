@@ -123,3 +123,9 @@ app.use((req, res, next) => {
 */
 
 // If you insert this code somewhere between where you instantiate the passport middleware and before you render your views, you will have access to the currentUser variable in all of your views, and you won’t have to manually pass it into all of the controllers in which you need it.
+
+/** NOTE - LINE 74 **
+ The second argument is the length of the “salt” to use in the hashing function; salting a password means adding extra random characters to it, the password plus the extra random characters are then fed into the hashing function. Salting is used to make a password hash output unique, even for users who use the same password, and to protect against rainbow tables and dictionary attacks.
+
+ Usually, the salt is stored in the database alongside the hashed value. However, in our case, there is no need to store the salt separately because the bcryptjs hashing algorithm automatically incorporates the salt within the hash itself.
+ */
