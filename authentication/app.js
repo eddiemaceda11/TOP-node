@@ -103,3 +103,17 @@ app.listen(3000, () => {
 // When a session is created, passport.serializeUser will receive the user object found from a successful login and store its id property in the session data. Upon some other request, if it finds a matching session for that request, passport.deserializeUser will retrieve the id we stored in the session data. We then use that id to query our database for the specified user, then done(null, user) attaches that user object to req.user. Now in the rest of the request, we have access to that user object via req.user.
 
 // Again, we aren’t going to be calling these functions on our own and we just need to define them, they’re used in the background by passport.
+
+//************ A QUICK TIP ***********//
+// In express, you can set and access various local variables throughout your entire app (even in views) with the locals object. We can use this knowledge to write ourselves a custom middleware that will simplify how we access our current user in our views.
+
+// Middleware functions are functions that take the req and res objects, manipulate them, and pass them on through the rest of the app.
+
+/*
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+*/
+
+// If you insert this code somewhere between where you instantiate the passport middleware and before you render your views, you will have access to the currentUser variable in all of your views, and you won’t have to manually pass it into all of the controllers in which you need it.
