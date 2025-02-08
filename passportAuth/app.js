@@ -13,3 +13,6 @@ app.set("view engine", "ejs");
 app.listen(3004, () => {
   console.log("Server running for passport prjoect");
 });
+
+// TEMP COMMENTS, TO GO IN README
+// npm install connect-pg-simple
