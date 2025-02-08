@@ -30,7 +30,7 @@ app.use(
       // Insert connect-pg-simple options here
     }),
     secret: "cats",
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
     // Insert express-session options here
