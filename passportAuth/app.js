@@ -22,6 +22,7 @@ const pgPool = new pg.Pool({
   port: 5432,
 });
 
+// Setting up our express session
 app.use(
   expressSession({
     store: new pgSession({
