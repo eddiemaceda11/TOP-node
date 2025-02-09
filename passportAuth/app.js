@@ -51,5 +51,7 @@ app.listen(3004, () => {
   console.log("Server running for passport prjoect");
 });
 
+module.exports = { pgPool };
+
 // TEMP COMMENTS, TO GO IN README
 // npm install connect-pg-simple
