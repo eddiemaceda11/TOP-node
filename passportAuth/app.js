@@ -18,9 +18,9 @@ const pgSession = require("connect-pg-simple")(expressSession);
 
 const pgPool = new pg.Pool({
   host: "localhost",
-  user: "eddiemaceda",
+  user: process.env.HOSTNAME,
   database: "passport_sessions",
-  password: "test",
+  password: process.env.PASSWORD,
   port: 5432,
 });
 
@@ -32,7 +32,7 @@ app.use(
       tableName: "session_test", // Use another table-name than the default "session" one
       // Insert connect-pg-simple options here
     }),
-    secret: "cats",
+    secret: process.env.SECRET,
     saveUninitialized: true,
     resave: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
