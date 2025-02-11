@@ -21,6 +21,16 @@ const pgPool = new pg.Pool({
   port: 5432,
 });
 
+// Check PostgreSQL connection
+pgPool.connect((err, client, release) => {
+  if (err) {
+    console.error("Error acquiring client", err.stack);
+  } else {
+    console.log("Connected to PostgreSQL session store!");
+    release();
+  }
+});
+
 // Setting up our express session
 app.use(
   expressSession({
