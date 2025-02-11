@@ -17,3 +17,8 @@ passport.use(
     }
   })
 );
+
+// Putting the user id into the session
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
