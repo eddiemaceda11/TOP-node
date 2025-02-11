@@ -13,9 +13,6 @@ const pgSession = require("connect-pg-simple")(expressSession);
 require("dotenv").config();
 require("./config/passport");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(passport.session()); // gives us access to the req.sessions object
-
 const pgPool = new pg.Pool({
   host: "localhost",
   user: process.env.HOSTNAME,
@@ -39,6 +36,9 @@ app.use(
     // Insert express-session options here
   })
 );
+
+app.use(express.urlencoded({ extended: true }));
+app.use(passport.session()); // gives us access to the req.sessions object
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
