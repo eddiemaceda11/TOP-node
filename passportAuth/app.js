@@ -4,16 +4,15 @@ const bcrypt = require("bcryptjs");
 const pg = require("pg");
 const express = require("express");
 const session = require("express-session");
+const app = express();
+// pg-simple session setup
+const expressSession = require("express-session");
+const pgSession = require("connect-pg-simple")(expressSession);
 
 require("dotenv").config();
 require("./config/passport");
 
-const app = express();
 app.use(express.urlencoded({ extended: true }));
-
-// pg-simple session setup
-const expressSession = require("express-session");
-const pgSession = require("connect-pg-simple")(expressSession);
 
 const pgPool = new pg.Pool({
   host: "localhost",
