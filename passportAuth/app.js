@@ -7,12 +7,14 @@ const session = require("express-session");
 const app = express();
 // pg-simple session setup
 const expressSession = require("express-session");
+const passport = require("passport");
 const pgSession = require("connect-pg-simple")(expressSession);
 
 require("dotenv").config();
 require("./config/passport");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.session());
 
 const pgPool = new pg.Pool({
   host: "localhost",
