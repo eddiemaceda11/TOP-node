@@ -22,3 +22,13 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
+passport.deserializeUser(async (userId, done) => {
+  try {
+    const { rows } = await pgPool.query("SELECT * FROM users WHERE id = $1", [userId]);
+    const user = rows[0];
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
