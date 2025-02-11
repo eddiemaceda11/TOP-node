@@ -14,7 +14,7 @@ require("dotenv").config();
 require("./config/passport");
 
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.session());
+app.use(passport.session()); // gives us access to the req.sessions object
 
 const pgPool = new pg.Pool({
   host: "localhost",
