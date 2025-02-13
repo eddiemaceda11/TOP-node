@@ -31,7 +31,7 @@ pgPool.connect((err, client, release) => {
   }
 });
 
-// Setting up our express session
+// Setting up our express session w/ pg-simple
 app.use(
   expressSession({
     store: new pgSession({
