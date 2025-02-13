@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 app.use("/", router);
 
 app.listen(3004, () => {
-  console.log("Server running for passport prjoect");
+  console.log("Server running for passport project");
 });
 
 // TEMP COMMENTS, TO GO IN README
