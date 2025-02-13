@@ -7,7 +7,7 @@ passport.use(
     try {
       const { rows } = await pgPool.query("SELECT * FROM users WHERE username = $1", [username]);
       const user = rows[0];
-
+      console.log("user: ", user);
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
