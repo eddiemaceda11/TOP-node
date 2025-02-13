@@ -1,9 +1,6 @@
-const path = require("node:path");
 const bcrypt = require("bcryptjs");
-// const { Pool } = require("pg");
 const pg = require("pg");
 const express = require("express");
-const session = require("express-session");
 const app = express();
 // pg-simple session setup
 const expressSession = require("express-session");
