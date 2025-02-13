@@ -3,7 +3,7 @@ const passport = require("passport");
 const passwordUtils = require("../lib/passwordUtils");
 
 router.post("/login", (req, res, next) => {});
-router.post("register", (req, res, next) => {});
+router.post("/register", (req, res, next) => {});
 
 router.get("/", (req, res, next) => {
   res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
@@ -19,7 +19,7 @@ router.get("/login", (req, res, next) => {
   res.send(form);
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/register", (req, res, next) => {
   const form =
     '<h1>Register Page</h1><form method="POST" action="/register">\
   Enter Username:<br><input type="text" name="username">\
