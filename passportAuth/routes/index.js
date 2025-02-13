@@ -2,7 +2,13 @@ const router = require("express").Router();
 const passport = require("passport");
 const passwordUtils = require("../lib/passwordUtils");
 
-router.post("/login", (req, res, next) => {});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/",
+  })
+);
 router.post("/register", (req, res, next) => {});
 
 router.get("/", (req, res, next) => {
