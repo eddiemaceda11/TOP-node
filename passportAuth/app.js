@@ -9,9 +9,9 @@ const app = express();
 const expressSession = require("express-session");
 const passport = require("passport");
 const pgSession = require("connect-pg-simple")(expressSession);
+const router = require("./routes/index");
 
 require("dotenv").config();
-require("./config/passport");
 
 const pgPool = new pg.Pool({
   host: "localhost",
@@ -20,6 +20,8 @@ const pgPool = new pg.Pool({
   password: process.env.PASSWORD,
   port: 5432,
 });
+
+module.exports = { pgPool };
 
 // Check PostgreSQL connection
 pgPool.connect((err, client, release) => {
@@ -49,16 +51,20 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.session()); // gives us access to the req.sessions object
+require("./config/passport");
 
-app.get("/", (req, res) => {
-  res.send("Hello from sessions");
+// custom middleware
+app.use((req, res, next) => {
+  console.log(req.session);
+  // console.log(req.user);
+  next();
 });
+
+app.use("/", router);
 
 app.listen(3004, () => {
   console.log("Server running for passport prjoect");
 });
-
-module.exports = { pgPool };
 
 // TEMP COMMENTS, TO GO IN README
 // npm install connect-pg-simple
