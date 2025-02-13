@@ -56,7 +56,7 @@ require("./config/passport");
 // custom middleware
 app.use((req, res, next) => {
   console.log(req.session);
-  // console.log(req.user);
+  console.log(req.user);
   next();
 });
 
