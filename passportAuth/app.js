@@ -5,7 +5,7 @@ const app = express();
 // pg-simple session setup
 const expressSession = require("express-session");
 const passport = require("passport");
-const pgSession = require("connect-pg-simple")(expressSession);
+const pgSession = require("connect-pg-simple")(expressSession); // in place of session
 const router = require("./routes/index");
 
 require("dotenv").config();
