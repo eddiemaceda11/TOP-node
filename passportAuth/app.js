@@ -50,7 +50,6 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.session()); // gives us access to the req.sessions object
 
-app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
