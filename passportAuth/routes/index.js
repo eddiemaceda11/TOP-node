@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const passwordUtils = require("../lib/passwordUtils");
+const { pgPool } = require("../app");
 
 router.post(
   "/login",
@@ -9,7 +10,17 @@ router.post(
     failureRedirect: "/",
   })
 );
-router.post("/register", (req, res, next) => {});
+
+router.post("/register", async (req, res, next) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    await pgPool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [req.body.username, hashedPassword]);
+    res.redirect("/login");
+  } catch (err) {
+    console.error(err);
+    return next(err);
+  }
+});
 
 router.get("/", (req, res, next) => {
   res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
