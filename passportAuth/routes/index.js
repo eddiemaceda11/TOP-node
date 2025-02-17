@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const passwordUtils = require("../lib/passwordUtils");
 const { pgPool } = require("../app");
-const { isAuth } = require("./authMiddleware");
+const { isAuth, isAdmin } = require("./authMiddleware");
 
 router.post(
   "/login",
