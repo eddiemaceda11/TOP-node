@@ -13,4 +13,5 @@
                    4)  When users sign up, they should not be automatically given membership status. A page is required where members can "join the club" by entering a secret passcode. If the password is correct, then their membership status will need to be updated.
                    5)  Create a login-form using passport.js.
                    6)  When a user is logged in give them a link to “Create a new message” (but only show it if they’re logged in!). Create the new-message form.
+                   7)  Display all member messages on the home page, but only show the author and date of the messages to other club-members.
  */
