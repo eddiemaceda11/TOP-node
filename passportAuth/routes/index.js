@@ -57,6 +57,10 @@ router.get("/protected-route", isAuth, (req, res, next) => {
   res.send("You've made it to the Auth page");
 });
 
+router.get("/admin-route", isAuth, (req, res, next) => {
+  res.send("You've made it to the Admin page");
+});
+
 // Visiting this route logs the user out
 router.get("/logout", (req, res, next) => {
   req.logout(function (err) {
