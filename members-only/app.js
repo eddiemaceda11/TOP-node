@@ -45,7 +45,7 @@ require("dotenv").config();
 const pgPool = new pg.Pool({
   host: "localhost",
   user: process.env.USERNAME,
-  database: "passport_sessions",
+  database: "members_only",
   password: process.env.passport,
   port: 5432,
 });
