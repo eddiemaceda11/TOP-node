@@ -5,7 +5,7 @@
  PROJECT PURPOSE:  The will incorporate the lessons of authentication, databases, and SQL covered to combine into one project.
  PROJECT STEPS:    1)  Brainstorm around the database models that will be needed to accomplish this project. Requirements
                    include a fullname(first and last), username(email is fine for use), password and membership status.
-                   Users need to be able to create message sthat have a title, a timestamp and some text. The database shoule
+                   Users need to be able to create messages that have a title, a timestamp and some text. The database should
                    keep track of who created each message.
 
                    2)  Setup the database on PostgreSQL and generate or create the project skeleton, including the models
@@ -24,6 +24,6 @@
                    8)  Add an optional field to the user model called Admin and then add the ability to delete messages, but only allow users who have admin == true to see the delete-button and delete messages. You’ll need to add a way to actually mark a user as an ‘admin’ so either add another secret pass-code page, or just put an “is admin” checkbox on the sign-up form.
 
                    9)  By this point, anyone who comes to the site should be able to see a list of all messages, with the author’s name hidden. Users should be able to sign-up and create messages, but ONLY users that are members should be able to see the author and date of each message. Finally, there should be an Admin user that is able to see everything and also has the ability to delete messages. 
-                   
+
                    10)  Once complete. deploy the project on a chosen PaaS (list of PaaS providers from the Deployment lesson).
  */
