@@ -27,3 +27,4 @@
 
                    10)  Once complete. deploy the project on a chosen PaaS (list of PaaS providers from the Deployment lesson).
  */
+// express-session pg passport passport-local
