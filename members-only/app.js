@@ -30,6 +30,9 @@
 // express-session pg passport passport-local
 const express = require("express");
 const app = express();
+const router = require("./routes/routes");
+
+app.use("/", router);
 
 app.listen(3005, () => {
   console.log("Now we're running on Server 3005");
