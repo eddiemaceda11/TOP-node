@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const passwordUtils = require("../lib/passwordUtils");
 const { pgPool } = require("../app");
+const { isAuth } = require("./authMiddleware");
 
 router.post(
   "/login",
@@ -52,13 +53,18 @@ router.get("/register", (req, res, next) => {
  *
  * Also, look up what behaviour express session has without a maxage set
  */
-router.get("/protected-route", (req, res, next) => {
+router.get("/protected-route", isAuth, (req, res, next) => {
   res.send("You've made it to the Auth page");
 });
 
 // Visiting this route logs the user out
 router.get("/logout", (req, res, next) => {
-  req.logout();
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
   res.redirect("/protected-route");
 });
 
