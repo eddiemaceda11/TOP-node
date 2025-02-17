@@ -42,6 +42,14 @@ const passport = require("passport");
 
 require("dotenv").config();
 
+const pgPool = new pg.Pool({
+  host: "localhost",
+  user: process.env.USERNAME,
+  database: "passport_sessions",
+  password: process.env.passport,
+  port: 5432,
+});
+
 app.use("/", router);
 
 app.listen(3005, () => {
