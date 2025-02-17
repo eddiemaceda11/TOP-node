@@ -31,6 +31,16 @@
 const express = require("express");
 const app = express();
 const router = require("./routes/routes");
+const pg = require("pg");
+const bcrypt = require("bcryptjs");
+
+//pg-simple session setup
+const expressSession = require("express-session");
+const pgSession = require("connect-pg-simple")(expressSession); // in place of session
+
+const passport = require("passport");
+
+require("dotenv").config();
 
 app.use("/", router);
 
