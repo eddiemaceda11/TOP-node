@@ -57,7 +57,7 @@ router.get("/protected-route", isAuth, (req, res, next) => {
   res.send("You've made it to the Auth page");
 });
 
-router.get("/admin-route", isAuth, (req, res, next) => {
+router.get("/admin-route", isAdmin, (req, res, next) => {
   res.send("You've made it to the Admin page");
 });
 
