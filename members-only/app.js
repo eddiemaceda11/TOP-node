@@ -14,4 +14,5 @@
                    5)  Create a login-form using passport.js.
                    6)  When a user is logged in give them a link to “Create a new message” (but only show it if they’re logged in!). Create the new-message form.
                    7)  Display all member messages on the home page, but only show the author and date of the messages to other club-members.
+                   8)  Add an optional field to the user model called Admin and then add the ability to delete messages, but only allow users who have admin == true to see the delete-button and delete messages. You’ll need to add a way to actually mark a user as an ‘admin’ so either add another secret pass-code page, or just put an “is admin” checkbox on the sign-up form.
  */
