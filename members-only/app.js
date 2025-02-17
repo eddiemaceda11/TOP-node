@@ -10,4 +10,5 @@
                    2)  Setup the database on PostgreSQL and generate or create the project skeleton, including the models
                    designed in Step 1.
                    3)  Will begin with a sign-up form to get the users into the database. Requirements include sanitization and validating the form fields, and securing the passwords with bcrypt. Also need to add a confirmPassword field to the sign-up form and thenn validate it using a custom validator.
+                   4)  When users sign up, they should not be automatically given membership status. A page is required where members can "join the club" by entering a secret passcode. If the password is correct, then their membership status will need to be updated.
  */
