@@ -1,4 +1,4 @@
-const { pg } = require('pg');
+const pg = require('pg');
 
 const pgPool = new pg.Pool({
   host: 'localhost',
