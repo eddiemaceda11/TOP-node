@@ -7,3 +7,5 @@ const pgPool = new pg.Pool({
   password: process.env.PASSWORD,
   port: 5432,
 });
+
+module.exports = { pgPool };
