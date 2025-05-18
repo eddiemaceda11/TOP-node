@@ -29,20 +29,16 @@
 const express = require('express');
 const app = express();
 const indexRouter = require('./routes/routes');
-// const pg = require('pg');
 const { pgPool } = require('./db/pool');
 const bcrypt = require('bcryptjs');
 const path = require('path');
-const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 
 //pg-simple session setup
 const expressSession = require('express-session');
 const pgSession = require('connect-pg-simple')(expressSession); // in place of session
 require('dotenv').config();
-require('./config/passport-config');
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.session()); // gives us access to the req.sessions object
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -63,6 +59,7 @@ app.use(
       pool: pgPool, // Connection pool,
       tableName: 'pg_session', // Use another table-name than the default "session" one
       // Insert connect-pg-simple options here
+      createTableIfMissing: true,
     }),
     secret: process.env.SECRET,
     saveUninitialized: true,
@@ -71,6 +68,9 @@ app.use(
     // Insert express-session options here
   })
 );
+
+app.use(passport.session()); // gives us access to the req.sessions object
+require('./config/passport-config');
 
 app.use('/', indexRouter);
 
