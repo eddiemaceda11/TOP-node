@@ -10,6 +10,11 @@ const { body, validationResult } = require('express-validator');
 const alphaErr = 'must contain only letters.';
 const lengthErr = 'must be between 1 and 25 characters';
 
+const validateUser = [
+  body('firstname').trim().isAlpha().withMessage(`First name ${alphaErr}`).isLength({ min: 1, max: 25 }).withMessage(`First name ${lengthErr}`),
+  body('lastname').trim().isAlpha().withMessage(`Last name ${alphaErr}`).isLength({ min: 1, max: 25 }).withMessage(`Last name ${lengthErr}`),
+];
+
 indexRouter.get('/', (req, res) => {
   res.render('login', { title: 'Login' });
   const message = 'Welcome to the Members Only Club!';
