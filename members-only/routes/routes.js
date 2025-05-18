@@ -3,6 +3,7 @@ const indexRouter = Router();
 const { pgPool } = require('../db/pool');
 const bcrypt = require('bcryptjs');
 // const { v4: uuidv4 } = require('uuid');
+const { body, validationResult } = require('express-validator');
 
 indexRouter.get('/', (req, res) => {
   res.render('login', { title: 'Login' });
