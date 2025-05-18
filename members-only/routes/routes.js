@@ -2,6 +2,7 @@ const { Router } = require('express');
 const indexRouter = Router();
 const { pgPool } = require('../db/pool');
 const bcrypt = require('bcryptjs');
+const { v4: uuidv4 } = require('uuid');
 
 indexRouter.get('/', (req, res) => {
   res.render('login', { title: 'Login' });
@@ -10,12 +11,12 @@ indexRouter.get('/', (req, res) => {
 });
 
 indexRouter.post('/register', async (req, res, next) => {
-  const { firstName, lastName, username, password } = req.body;
+  const { firstname, lastname, username, password } = req.body;
 
-  console.log(firstName, lastName, username, password);
+  console.log(firstname, lastname, username, password);
   try {
     const hashedPassword = await bcrypt.hash(password, 12);
-    await pgPool.query('INSERT INTO members (id, fullname, username, password, membership_status, isadmin) VALUES ($1, $2, $3, $4, $5, $6)', [uuidv4(), `${firstName} ${lastName}`, username, hashedPassword, 'active', false]);
+    await pgPool.query('INSERT INTO members (fullname, username, password, membership_status, isadmin) VALUES ($1, $2, $3, $4, $5)', [`${firstname} ${lastname}`, username, hashedPassword, 'active', false]);
   } catch (err) {
     console.log(err);
     return next(err);
