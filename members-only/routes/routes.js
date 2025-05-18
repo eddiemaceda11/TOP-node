@@ -5,6 +5,11 @@ const bcrypt = require('bcryptjs');
 // const { v4: uuidv4 } = require('uuid');
 const { body, validationResult } = require('express-validator');
 
+// firstname, lastname, username, password
+
+const alphaErr = 'must contain only letters.';
+const lengthErr = 'must be between 1 and 25 characters';
+
 indexRouter.get('/', (req, res) => {
   res.render('login', { title: 'Login' });
   const message = 'Welcome to the Members Only Club!';
