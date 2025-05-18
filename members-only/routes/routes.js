@@ -18,24 +18,29 @@ const validateUser = [
 ];
 
 indexRouter.get('/', (req, res) => {
-  res.render('login', { title: 'Login' });
+  res.render('register', { title: 'Register' });
   const message = 'Welcome to the Members Only Club!';
   console.log(message);
 });
 
-indexRouter.post('/register', async (req, res, next) => {
-  const { firstname, lastname, username, password } = req.body;
+indexRouter.post('/register', [
+  validateUser,
+  async (req, res, next) => {
+    const { firstname, lastname, username, password } = req.body;
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render('');
+      }
 
-  console.log(firstname, lastname, username, password);
-  try {
-    const hashedPassword = await bcrypt.hash(password, 12);
-    await pgPool.query('INSERT INTO members (fullname, username, password, membership_status, isadmin) VALUES ($1, $2, $3, $4, $5)', [`${firstname} ${lastname}`, username, hashedPassword, 'active', false]);
-  } catch (err) {
-    console.log(err);
-    return next(err);
-  }
-
-  res.end('Login successful');
-});
+      const hashedPassword = await bcrypt.hash(password, 12);
+      await pgPool.query('INSERT INTO members (fullname, username, password, membership_status, isadmin) VALUES ($1, $2, $3, $4, $5)', [`${firstname} ${lastname}`, username, hashedPassword, 'active', false]);
+    } catch (err) {
+      console.log(err);
+      return next(err);
+    }
+    res.end('User registered successfully');
+  },
+]);
 
 module.exports = indexRouter;
