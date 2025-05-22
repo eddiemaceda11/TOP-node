@@ -17,8 +17,8 @@ const validateUser = [
   body('password').trim().isLength({ min: 1, max: 25 }).withMessage(`Password ${lengthErr}`),
 ];
 
-indexRouter.get('/', (req, res) => {
-  res.render('register', { title: 'Register' });
+indexRouter.get('/register', (req, res) => {
+  res.render('register', { title: 'Register', errors: [] });
   const message = 'Welcome to the Members Only Club!';
   console.log(message);
 });
@@ -29,8 +29,21 @@ indexRouter.post('/register', [
     const { firstname, lastname, username, password } = req.body;
     try {
       const errors = validationResult(req);
+      console.log(errors.array());
       if (!errors.isEmpty()) {
-        return res.status(400).render('');
+        return res.status(400).render('register', {
+          title: 'Register',
+          errors: errors.array(),
+        });
+      }
+
+      const existingUser = await pgPool.query('SELECT * FROM members WHERE username = $1', [username]);
+
+      if (existingUser.rows.length > 0) {
+        return res.status(400).render('register', {
+          title: 'Register',
+          errors: [{ msg: 'Username already exists' }],
+        });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
