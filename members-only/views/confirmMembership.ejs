@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title><%= title || 'Document' %></title>
+  </head>
+  <body>
+    <h1>Confirm Membership</h1>
+    <form
+      method="POST"
+      action="/confirmMembership"
+    >
+      <label for="confirmMembership">Confirm membership:</label>
+      <input
+        type="text"
+        name="confirmMembership"
+        placeholder="Enter your membership code"
+      />
+    </form>
+  </body>
+</html>
