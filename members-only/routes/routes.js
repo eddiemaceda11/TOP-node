@@ -15,6 +15,12 @@ const validateUser = [
   body('lastname').trim().isAlpha().withMessage(`Last name ${alphaErr}`).isLength({ min: 1, max: 25 }).withMessage(`Last name ${lengthErr}`),
   body('username').trim().isLength({ min: 1, max: 25 }).withMessage(`Username ${lengthErr}`),
   body('password').trim().isLength({ min: 1, max: 25 }).withMessage(`Password ${lengthErr}`),
+  body('passwordConfirmation').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords do not match');
+    }
+    return true;
+  }),
 ];
 
 indexRouter.get('/register', (req, res) => {
