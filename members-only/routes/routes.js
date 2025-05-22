@@ -58,7 +58,9 @@ indexRouter.post('/register', [
       console.log(err);
       return next(err);
     }
-    res.end('User registered successfully');
+    res.render('confirmMembership', {
+      title: 'Confirm Membership',
+    });
   },
 ]);
 
