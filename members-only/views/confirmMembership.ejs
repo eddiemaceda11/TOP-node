@@ -14,12 +14,21 @@
       method="POST"
       action="/confirmMembership"
     >
-      <label for="confirmMembership">Confirm membership:</label>
-      <input
-        type="text"
-        name="confirmMembership"
-        placeholder="Enter your membership code"
-      />
+      <div>
+        <input
+          type="hidden"
+          name="username"
+          value="<%= username %>"
+        />
+      </div>
+      <div>
+        <label for="membershipCode">Confirm membership:</label>
+        <input
+          type="text"
+          name="membershipCode"
+          placeholder="Enter your membership code"
+        />
+      </div>
     </form>
   </body>
 </html>
