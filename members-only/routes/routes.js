@@ -75,7 +75,13 @@ indexRouter.post('/register', [
       const hashedPassword = await bcrypt.hash(password, 12);
       await pgPool.query(
         'INSERT INTO members (fullname, username, password, membership_status, isadmin) VALUES ($1, $2, $3, $4, $5)',
-        [`${firstname} ${lastname}`, username, hashedPassword, 'active', false]
+        [
+          `${firstname} ${lastname}`,
+          username,
+          hashedPassword,
+          'inactive',
+          false,
+        ]
       );
     } catch (err) {
       console.log(err);
@@ -98,12 +104,13 @@ indexRouter.post(
 
 indexRouter.post('/confirmMembership', async (req, res) => {
   console.log(req.body);
-
-  // if (membershipCode === process.env.MEMBERSHIP_CODE) {
-  //   await pgPool.query('SELECT * FROM members WHERE members.username = $1', [
-  //     username,
-  //   ]);
-  // }
+  const { username, membershipCode } = req.body;
+  if (membershipCode === process.env.MEMBERSHIP_CODE) {
+    await pgPool.query(
+      "UPDATE members SET membership_status = 'active' WHERE username = $1",
+      [username]
+    );
+  }
   res.end('Confirmed');
 });
 
