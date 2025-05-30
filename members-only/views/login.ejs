@@ -7,11 +7,11 @@
   <body>
     <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
-    <a href="/log-out">LOG OUT</a>
+    <a href="/logout">LOG OUT</a>
     <% } else { %>
     <h1>please log in</h1>
     <form
-      action="/log-in"
+      action="/login"
       method="POST"
     >
       <label for="username">Username</label>
