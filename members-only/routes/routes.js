@@ -94,13 +94,13 @@ indexRouter.post('/register', [
   },
 ]);
 
-indexRouter.post(
-  '/authenticate',
-  passport.authenticate('local', {
-    successRedirect: '/confirmMembership',
-    failureRedirect: '/register',
-  })
-);
+// indexRouter.post(
+//   '/authenticate',
+//   passport.authenticate('local', {
+//     successRedirect: '/confirmMembership',
+//     failureRedirect: '/register',
+//   })
+// );
 
 indexRouter.post('/confirmMembership', async (req, res) => {
   console.log(req.body);
@@ -111,14 +111,22 @@ indexRouter.post('/confirmMembership', async (req, res) => {
       [username]
     );
   }
-  res.end('Confirmed');
+  res.redirect('/login');
 });
 
 /***** LOGIN ******/
 indexRouter.get('/login', (req, res) => {
-  res.render('index', {
+  res.render('login', {
     user: req.user,
   });
 });
+
+indexRouter.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/login',
+    failureRedirect: '/login',
+  })
+);
 
 module.exports = indexRouter;
