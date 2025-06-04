@@ -129,4 +129,26 @@ indexRouter.post(
   })
 );
 
+//////////////////////
+indexRouter.post('/create-message', async (req, res) => {
+  // query to create message and store in DB
+  // id, title, created_at, content, member_id
+
+  const { content, title } = req.body;
+  const username = req.user.username;
+
+  const { rows } = await pgPool.query(
+    'SELECT id FROM members WHERE username = $1',
+    [username]
+  );
+  const id = rows[0].id;
+  console.log(`ID of user ${username} is ${id}`);
+
+  await pgPool.query(
+    'INSERT INTO messages (title, created_at, content, member_id) VALUES ($1, $2, $3, $4)',
+    [title, new Date(), content, id]
+  );
+  res.end('Done');
+});
+
 module.exports = indexRouter;
