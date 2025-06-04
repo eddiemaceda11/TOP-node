@@ -8,6 +8,28 @@
     <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
     <a href="/logout">LOG OUT</a>
+    <form
+      action="/create-message"
+      method="POST"
+    >
+      <label for="title">Add a title!</label>
+      <br />
+      <input
+        id="title"
+        name="title"
+        placeholder="Enter your title"
+      />
+      <label for="content">Create a message!</label>
+      <br />
+      <textarea
+        id="content"
+        name="content"
+        placeholder="Enter your message..."
+        rows="4"
+        cols="50"
+      ></textarea>
+      <button>Create</button>
+    </form>
     <% } else { %>
     <h1>please log in</h1>
     <form
