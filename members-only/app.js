@@ -15,7 +15,7 @@
 
                    5)  Create a login-form using passport.js. ✓
 
-                   6)  When a user is logged in give them a link to “Create a new message” (but only show it if they’re logged in!). Create the new-message form.
+                   6)  When a user is logged in give them a link to “Create a new message” (but only show it if they’re logged in!). Create the new-message form. ✓
                    
                    7)  Display all member messages on the home page, but only show the author and date of the messages to other club-members.
 
