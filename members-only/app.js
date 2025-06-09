@@ -37,6 +37,7 @@ const passport = require('passport');
 //pg-simple session setup
 const expressSession = require('express-session');
 const pgSession = require('connect-pg-simple')(expressSession); // in place of session
+
 require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
