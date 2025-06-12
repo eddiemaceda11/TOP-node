@@ -1,0 +1,10 @@
+<li>
+  <%= directory.name %> <% if (directory.isOpen) { %>
+  <ul>
+    <% directory.files.forEach(file => { %>
+    <li><%= file.name %></li>
+    <% }) %> <% directory.folders.forEach(folder => { %> <%- include('folder', {
+    directory: folder }) %> <% }) %>
+  </ul>
+  <% } %>
+</li>
