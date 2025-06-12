@@ -12,8 +12,8 @@ loginRouter.get('/', (req, res) => {
 loginRouter.post(
   '/',
   passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/', // fixed typo: "filureRedirect" -> "failureRedirect"
+    successRedirect: '/login',
+    failureRedirect: '/login', // fixed typo: "filureRedirect" -> "failureRedirect"
   })
 );
 
