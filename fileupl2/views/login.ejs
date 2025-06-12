@@ -8,7 +8,7 @@
     <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
     <a href="/logout">LOG OUT</a>
-    <form
+    <!-- <form
       action="/create-message"
       method="POST"
     >
@@ -30,6 +30,34 @@
       ></textarea>
       <button>Create</button>
     </form>
+    -->
+    <form
+      action="/upload"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="file"
+        name="uploaded_file"
+      />
+      <input type="submit" />
+    </form>
+    <div
+      style="
+        border: 1px solid red;
+        height: 620px;
+        width: 900px;
+        margin-top: 50px;
+      "
+    >
+      <div style="height: 100%; width: 250px; background: lightgrey">
+        <div>
+          <ul>
+            <%- include('folder', { directory: directory }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
     <% } else { %>
     <h1>please log in</h1>
     <form
@@ -54,3 +82,13 @@
     <%}%>
   </body>
 </html>
+
+<!-- 
+Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
+
+Don't forget the enctype="multipart/form-data" in your form.
+  
+<form action="/profile" method="post" enctype="multipart/form-data">
+  <input type="file" name="avatar" />
+</form>
+ -->
